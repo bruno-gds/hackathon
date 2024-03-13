@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  hackathon_db:
+    image: mysql:latest
+    container_name: hackathon_db
+    environment:
+      MYSQL_ROOT_PASSWORD: senha
+      MYSQL_DATABASE: hackathon
+      MYSQL_USER: bruno
+      MYSQL_PASSWORD: bruno123
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db-data:/var/lib/mysql
