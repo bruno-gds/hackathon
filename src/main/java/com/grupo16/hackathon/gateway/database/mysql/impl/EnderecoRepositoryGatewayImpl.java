@@ -1,7 +1,9 @@
 package com.grupo16.hackathon.gateway.database.mysql.impl;
 
 import com.grupo16.hackathon.domain.Endereco;
+import com.grupo16.hackathon.exception.ErroAoAcessarDatabaseException;
 import com.grupo16.hackathon.gateway.database.EnderecoRepositoryGateway;
+import com.grupo16.hackathon.gateway.database.mysql.entity.EnderecoEntity;
 import com.grupo16.hackathon.gateway.database.mysql.repository.EnderecoRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +25,20 @@ public class EnderecoRepositoryGatewayImpl implements EnderecoRepositoryGateway 
 
     @Override
     public Long salvar(Endereco endereco) {
-        return null;
+        try {
+            log.trace("Start endereco={}", endereco);
+
+            EnderecoEntity entity = new EnderecoEntity(endereco);
+
+            enderecoRepository.save(entity);
+
+            log.trace("End id={}", entity.getId());
+            return entity.getId();
+
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new ErroAoAcessarDatabaseException();
+        }
     }
 
     @Override

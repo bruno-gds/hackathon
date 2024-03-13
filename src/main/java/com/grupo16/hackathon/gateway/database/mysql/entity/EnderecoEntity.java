@@ -1,6 +1,6 @@
 package com.grupo16.hackathon.gateway.database.mysql.entity;
 
-import com.grupo16.hackathon.domain.Estado;
+import com.grupo16.hackathon.domain.Endereco;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,8 +27,20 @@ public class EnderecoEntity {
     private String rua;
     private String numero;
     private String cidade;
-    private Estado estado;
+    private int estado;
     private String cep;
     private Long idLocalidade;
     private Long idHotel;
+
+
+    public EnderecoEntity(Endereco endereco) {
+        this.id = endereco.getId();
+        this.rua = endereco.getRua();
+        this.numero = endereco.getNumero();
+        this.cidade = endereco.getCidade();
+        this.estado = endereco.getEstado().ordinal();
+        this.cep = endereco.getCep();
+        this.idLocalidade = endereco.getIdLocalidade();
+        this.idHotel = endereco.getIdHotel();
+    }
 }
