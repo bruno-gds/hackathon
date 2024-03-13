@@ -1,7 +1,7 @@
 package com.grupo16.hackathon.usecase;
 
 import com.grupo16.hackathon.domain.Endereco;
-import com.grupo16.hackathon.gateway.EnderecoRepositoryGateway;
+import com.grupo16.hackathon.gateway.database.EnderecoRepositoryGateway;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -12,14 +12,15 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class CriarAlterarEnderecoUseCase {
 
-	private EnderecoRepositoryGateway enderecoRepository;
+	private EnderecoRepositoryGateway enderecoRepositoryGateway;
 	
 	private ObterEnderecoUseCase obterEnderecoUseCase;
-	
+
+
 	public Long criar(Endereco endereco) {
 		log.trace("Start endereco={}", endereco);
 
-		Long id = enderecoRepository.salvar(endereco);
+		Long id = enderecoRepositoryGateway.salvar(endereco);
 		
 		log.trace("End id={}", id);
 		return id;

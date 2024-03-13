@@ -1,7 +1,7 @@
 package com.grupo16.hackathon.usecase;
 
 import com.grupo16.hackathon.domain.Endereco;
-import com.grupo16.hackathon.gateway.EnderecoRepositoryGateway;
+import com.grupo16.hackathon.gateway.database.EnderecoRepositoryGateway;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
