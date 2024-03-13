@@ -1,7 +1,9 @@
 package com.grupo16.hackathon.gateway.controller.json;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grupo16.hackathon.domain.Endereco;
 import com.grupo16.hackathon.domain.Estado;
+import com.grupo16.hackathon.domain.Hotel;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
@@ -18,6 +20,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class EnderecoJson {
 
     private Long id;
@@ -37,8 +40,7 @@ public class EnderecoJson {
 
     @NotBlank
     private String cep;
-    private Long idLocalidade;
-    private Long idHotel;
+    private HotelJson idHotel;
 
 
     public EnderecoJson(Endereco endereco) {
@@ -48,8 +50,9 @@ public class EnderecoJson {
         this.cidade = endereco.getCidade();
         this.estado = String.valueOf(endereco.getEstado());
         this.cep = endereco.getCep();
-        this.idLocalidade = endereco.getIdLocalidade();
-        this.idHotel = endereco.getIdHotel();
+        this.idHotel = HotelJson.builder()
+                .id(endereco.getIdHotel().getId())
+                .build();
     }
 
     public Endereco mapearParaEnderecoDomain() {
@@ -61,8 +64,9 @@ public class EnderecoJson {
                 .cidade(cidade)
                 .estado(Estado.valueOf(estado))
                 .cep(cep)
-                .idLocalidade(idLocalidade)
-                .idHotel(idHotel)
+                .idHotel(Hotel.builder()
+                        .id(idHotel.getId())
+                        .build())
                 .build();
     }
 }

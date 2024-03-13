@@ -29,8 +29,9 @@ public class EnderecoEntity {
     private String cidade;
     private int estado;
     private String cep;
-    private Long idLocalidade;
-    private Long idHotel;
+
+    @OneToOne(mappedBy = "hotel")
+    private HotelEntity idHotel;
 
 
     public EnderecoEntity(Endereco endereco) {
@@ -40,7 +41,8 @@ public class EnderecoEntity {
         this.cidade = endereco.getCidade();
         this.estado = endereco.getEstado().ordinal();
         this.cep = endereco.getCep();
-        this.idLocalidade = endereco.getIdLocalidade();
-        this.idHotel = endereco.getIdHotel();
+        this.idHotel = HotelEntity.builder()
+                .id(endereco.getIdHotel().getId())
+                .build();
     }
 }

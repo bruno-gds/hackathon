@@ -21,6 +21,5 @@ public class Endereco {
     private String cidade;
     private Estado estado;
     private String cep;
-    private Long idLocalidade;
-    private Long idHotel;
+    private Hotel idHotel;
 }
