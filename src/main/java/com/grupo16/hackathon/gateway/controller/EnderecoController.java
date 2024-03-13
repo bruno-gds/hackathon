@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @Slf4j
 @RestController
@@ -24,6 +26,13 @@ public class EnderecoController {
 
 	private RemoverEnderecoUseCase removerEnderecoUseCase;
 
+
+	@GetMapping()
+	public List<EnderecoJson> listarTodos() {
+		List<Endereco> enderecos = obterEnderecoUseCase.obterTodos();
+
+		return enderecos.stream().map(EnderecoJson::new).toList();
+	}
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()

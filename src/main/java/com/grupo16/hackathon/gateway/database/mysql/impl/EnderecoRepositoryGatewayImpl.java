@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * @author Bruno Gomes Damascena dos santos (bruno-gds) < brunog.damascena@gmail.com >
  * Date: 13/03/2024
@@ -22,6 +24,18 @@ public class EnderecoRepositoryGatewayImpl implements EnderecoRepositoryGateway 
 
     private EnderecoRepository enderecoRepository;
 
+
+    @Override
+    public List<Endereco> obterTodos() {
+        try {
+            List<EnderecoEntity> enderecos = this.enderecoRepository.findAll();
+
+            return enderecos.stream().map(EnderecoEntity::mapearParaDomain).toList();
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new ErroAoAcessarDatabaseException();
+        }
+    }
 
     @Override
     public Long salvar(Endereco endereco) {
