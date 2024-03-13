@@ -45,4 +45,13 @@ public class EnderecoController {
 		log.trace("End id={}", id);
 		return id;
 	}
+
+	@DeleteMapping("/{id}")
+	public void remover(@PathVariable Long id) {
+		log.trace("Start id={}", id);
+
+		removerEnderecoUseCase.remover(id);
+
+		log.trace("End");
+	}
 }

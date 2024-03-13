@@ -57,6 +57,11 @@ public class EnderecoRepositoryGatewayImpl implements EnderecoRepositoryGateway 
 
     @Override
     public void remover(Long id) {
-
+        try {
+            this.enderecoRepository.deleteById(id);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new ErroAoAcessarDatabaseException();
+        }
     }
 }
