@@ -46,6 +46,17 @@ public class EnderecoController {
 		return id;
 	}
 
+	@PutMapping("/{id}")
+	public void alterar(@PathVariable Long id, @Valid @RequestBody EnderecoJson enderecoJson) {
+		log.trace("Start id={} enderecoJson={}", id, enderecoJson);
+
+		Endereco endereco = enderecoJson.mapearParaEnderecoDomain();
+
+		criarAlterarEnderecoUseCase.alterar(id, endereco);
+
+		log.trace("End");
+	}
+
 	@DeleteMapping("/{id}")
 	public void remover(@PathVariable Long id) {
 		log.trace("Start id={}", id);

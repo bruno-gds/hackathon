@@ -1,10 +1,13 @@
 package com.grupo16.hackathon.usecase;
 
 import com.grupo16.hackathon.domain.Endereco;
+import com.grupo16.hackathon.exception.ErroAoAcessarDatabaseException;
 import com.grupo16.hackathon.gateway.database.EnderecoRepositoryGateway;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 
 @Service
@@ -13,8 +16,6 @@ import org.springframework.stereotype.Service;
 public class CriarAlterarEnderecoUseCase {
 
 	private EnderecoRepositoryGateway enderecoRepositoryGateway;
-	
-	private ObterEnderecoUseCase obterEnderecoUseCase;
 
 
 	public Long criar(Endereco endereco) {
@@ -26,25 +27,27 @@ public class CriarAlterarEnderecoUseCase {
 		return id;
 	}
 
-	public void alterar(Endereco endereco) {
-		log.trace("Start endereco={}", endereco);
+	public void alterar(Long id, Endereco endereco) {
+		log.trace("Start id={} endereco={}", id, endereco);
 
-		// TODO: Implementar ajustes
-//		Endereco enderecoEncontrado = obterEnderecoUseCase.obterByIdAndUsuarioId(endereco.getId(), endereco.getUsuario().getId());
-//
-//		Endereco enderecoToUpdate = Endereco.builder()
-//				.id(enderecoEncontrado.getId())
-//				.rua(endereco.getRua())
-//				.numero(endereco.getNumero())
-//				.bairro(endereco.getBairro())
-//				.cidade(endereco.getCidade())
-//				.estado(endereco.getEstado())
-//				.cep(endereco.getCep())
-//				.usuario(enderecoEncontrado.getUsuario())
-//				.build();
-//
-//		enderecoRepository.salvar(enderecoToUpdate);
-		
+		Optional<Endereco> enderecoOp = enderecoRepositoryGateway.obterPorId(id);
+
+		if (enderecoOp.isPresent()) {
+			Endereco novoEndereco = Endereco.builder()
+					.id(enderecoOp.get().getId())
+					.rua(endereco.getRua())
+					.numero(endereco.getNumero())
+					.cidade(endereco.getCidade())
+					.estado(endereco.getEstado())
+					.cep(endereco.getCep())
+					.idHotel(enderecoOp.get().getIdHotel())
+					.build();
+
+			enderecoRepositoryGateway.salvar(novoEndereco);
+		}
+
 		log.trace("End");
+
+		throw new IllegalArgumentException("Endereço não encontrado");
 	}
 }
