@@ -12,4 +12,9 @@ public class CriarAlterarQuartoUseCase {
 		return null;
 	}
 
+	public void alterar(Quarto quarto) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
