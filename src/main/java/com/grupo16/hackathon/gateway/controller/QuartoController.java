@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.grupo16.hackathon.domain.Quarto;
 import com.grupo16.hackathon.gateway.controller.json.QuartoJson;
+import com.grupo16.hackathon.usecase.CriarAlterarQuartoUseCase;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,15 +18,18 @@ import lombok.extern.slf4j.Slf4j;
 @AllArgsConstructor
 public class QuartoController {
 	
+	private CriarAlterarQuartoUseCase criarAlterarQuartoUseCase;
+	
 	@PostMapping
 	public Long criar(@RequestBody QuartoJson quartoJson) {
 		log.trace("Start quartoJson={}", quartoJson);
 		
 		Quarto quarto = quartoJson.mapperToDomain();
 		
+		Long id = criarAlterarQuartoUseCase.criar(quarto);
 		
-		
-		return null;
+		log.trace("End id={}", id);
+		return id;
 	}
 
 }

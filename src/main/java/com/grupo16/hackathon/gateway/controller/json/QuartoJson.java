@@ -21,7 +21,7 @@ public class QuartoJson {
 
 	private Long id;
 	private String banheiro;
-	private List<MovelQuarto> outrosMoveis;
+	private List<MovelQuartoJson> outrosMoveis;
 	private Double valorDiaria;
 	private Long idHotel;
 	private TipoQuarto tipoQuarto;
@@ -29,12 +29,16 @@ public class QuartoJson {
 	
 	
 	public Quarto mapperToDomain() {
+		List<MovelQuarto> moveisQuarto = outrosMoveis.stream()
+				.map(MovelQuartoJson::mapperToDomain).toList();
+		
 		return Quarto.builder()
 				.id(id)
 				.banheiro(banheiro)
 				.valorDiaria(valorDiaria)
 				.idHotel(idHotel)
 				.quantidadeQuartos(quantidadeQuartos)
+				.outrosMoveis(moveisQuarto)
 				.build();
 	}
 
