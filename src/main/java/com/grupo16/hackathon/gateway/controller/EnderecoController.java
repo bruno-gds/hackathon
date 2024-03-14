@@ -34,6 +34,17 @@ public class EnderecoController {
 		return enderecos.stream().map(EnderecoJson::new).toList();
 	}
 
+	@GetMapping("/{id}")
+	public EnderecoJson obterPorId(@PathVariable Long id) {
+		log.trace("Start id={}", id);
+
+		Endereco endereco = obterEnderecoUseCase.obterPorId(id);
+		EnderecoJson enderecoJson = new EnderecoJson(endereco);
+
+		log.trace("End enderecoJson={}", enderecoJson);
+		return enderecoJson;
+	}
+
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
 	public Long criar(@Valid @RequestBody EnderecoJson enderecoJson) {
@@ -46,6 +57,19 @@ public class EnderecoController {
 		return id;
 	}
 
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@PutMapping("/{id}")
+	public void alterar(@PathVariable Long id, @Valid @RequestBody EnderecoJson enderecoJson) {
+		log.trace("Start id={} enderecoJson={}", id, enderecoJson);
+
+		Endereco endereco = enderecoJson.mapearParaEnderecoDomain();
+
+		criarAlterarEnderecoUseCase.alterar(id, endereco);
+
+		log.trace("End");
+	}
+
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void remover(@PathVariable Long id) {
 		log.trace("Start id={}", id);

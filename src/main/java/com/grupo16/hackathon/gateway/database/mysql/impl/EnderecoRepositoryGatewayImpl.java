@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Bruno Gomes Damascena dos santos (bruno-gds) < brunog.damascena@gmail.com >
@@ -31,6 +32,18 @@ public class EnderecoRepositoryGatewayImpl implements EnderecoRepositoryGateway 
             List<EnderecoEntity> enderecos = this.enderecoRepository.findAll();
 
             return enderecos.stream().map(EnderecoEntity::mapearParaDomain).toList();
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new ErroAoAcessarDatabaseException();
+        }
+    }
+
+    @Override
+    public Optional<Endereco> obterPorId(Long id) {
+        try {
+            EnderecoEntity entity = this.enderecoRepository.findById(id).orElse(null);
+
+            return Optional.ofNullable(entity).map(EnderecoEntity::mapearParaDomain);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             throw new ErroAoAcessarDatabaseException();
