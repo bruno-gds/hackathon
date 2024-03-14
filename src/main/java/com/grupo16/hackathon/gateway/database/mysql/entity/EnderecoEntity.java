@@ -1,5 +1,6 @@
 package com.grupo16.hackathon.gateway.database.mysql.entity;
 
+import com.grupo16.hackathon.domain.Cliente;
 import com.grupo16.hackathon.domain.Endereco;
 import com.grupo16.hackathon.domain.Estado;
 import com.grupo16.hackathon.domain.Hotel;
@@ -31,9 +32,13 @@ public class EnderecoEntity {
     private String cidade;
     private int estado;
     private String cep;
+    private String pais;
 
     @OneToOne(mappedBy = "hotel")
-    private HotelEntity idHotel;
+    private HotelEntity hotelId;
+
+    @OneToOne(mappedBy = "cliente")
+    private ClienteEntity clienteId;
 
 
     public EnderecoEntity(Endereco endereco) {
@@ -43,8 +48,12 @@ public class EnderecoEntity {
         this.cidade = endereco.getCidade();
         this.estado = endereco.getEstado().ordinal();
         this.cep = endereco.getCep();
-        this.idHotel = HotelEntity.builder()
-                .id(endereco.getIdHotel().getId())
+        this.pais = endereco.getPais();
+        this.hotelId = HotelEntity.builder()
+                .id(endereco.getHotelId().getId())
+                .build();
+        this.clienteId = ClienteEntity.builder()
+                .id(endereco.getClienteId().getId())
                 .build();
     }
 
@@ -56,8 +65,12 @@ public class EnderecoEntity {
                 .cidade(cidade)
                 .estado(Estado.getByOrdinal(estado))
                 .cep(cep)
-                .idHotel(Hotel.builder()
-                        .id(idHotel.getId())
+                .pais(pais)
+                .hotelId(Hotel.builder()
+                        .id(hotelId.getId())
+                        .build())
+                .clienteId(Cliente.builder()
+                        .id(clienteId.getId())
                         .build())
                 .build();
     }

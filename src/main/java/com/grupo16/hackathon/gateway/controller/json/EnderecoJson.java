@@ -1,6 +1,7 @@
 package com.grupo16.hackathon.gateway.controller.json;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.grupo16.hackathon.domain.Cliente;
 import com.grupo16.hackathon.domain.Endereco;
 import com.grupo16.hackathon.domain.Estado;
 import com.grupo16.hackathon.domain.Hotel;
@@ -40,7 +41,12 @@ public class EnderecoJson {
 
     @NotBlank
     private String cep;
-    private HotelJson idHotel;
+
+    @NotBlank
+    private String pais;
+
+    private HotelJson hotelId;
+    private ClienteJson clienteId;
 
 
     public EnderecoJson(Endereco endereco) {
@@ -50,8 +56,12 @@ public class EnderecoJson {
         this.cidade = endereco.getCidade();
         this.estado = String.valueOf(endereco.getEstado());
         this.cep = endereco.getCep();
-        this.idHotel = HotelJson.builder()
-                .id(endereco.getIdHotel().getId())
+        this.pais = endereco.getPais();
+        this.hotelId = HotelJson.builder()
+                .id(endereco.getHotelId().getId())
+                .build();
+        this.clienteId = ClienteJson.builder()
+                .id(endereco.getClienteId().getId())
                 .build();
     }
 
@@ -64,8 +74,12 @@ public class EnderecoJson {
                 .cidade(cidade)
                 .estado(Estado.valueOf(estado))
                 .cep(cep)
-                .idHotel(Hotel.builder()
-                        .id(idHotel.getId())
+                .pais(pais)
+                .hotelId(Hotel.builder()
+                        .id(hotelId.getId())
+                        .build())
+                .clienteId(Cliente.builder()
+                        .id(clienteId.getId())
                         .build())
                 .build();
     }
