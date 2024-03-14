@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 /**
  * @author Bruno Gomes Damascena dos santos (bruno-gds) < brunog.damascena@gmail.com >
  * Date: 13/03/2024
@@ -21,6 +23,19 @@ import org.springframework.stereotype.Component;
 public class ClienteRepositoryGatewayImpl implements ClienteRepositoryGateway {
 
     private ClienteRepository clienteRepository;
+
+
+    @Override
+    public Optional<Cliente> obterPorId(Long id) {
+        try {
+            ClienteEntity entity = this.clienteRepository.findById(id).orElse(null);
+
+            return Optional.ofNullable(entity).map(ClienteEntity::mapearParaDomain);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new ErroAoAcessarDatabaseException();
+        }
+    }
 
     @Override
     public Long salvar(Cliente cliente) {

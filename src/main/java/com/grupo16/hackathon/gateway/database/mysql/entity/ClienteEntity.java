@@ -1,6 +1,7 @@
 package com.grupo16.hackathon.gateway.database.mysql.entity;
 
 import com.grupo16.hackathon.domain.Cliente;
+import com.grupo16.hackathon.domain.Endereco;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -47,6 +48,22 @@ public class ClienteEntity {
         this.email = cliente.getEmail();
         this.enderecoId = EnderecoEntity.builder()
                 .id(cliente.getEnderecoId().getId())
+                .build();
+    }
+
+    public Cliente mapearParaDomain() {
+        return Cliente.builder()
+                .id(id)
+                .paisOrigem(paisOrigem)
+                .cpf(cpf)
+                .passaporte(passaporte)
+                .nome(nome)
+                .dataNascimento(dataNascimento)
+                .telefone(telefone)
+                .email(email)
+                .enderecoId(Endereco.builder()
+                        .id(enderecoId.getId())
+                        .build())
                 .build();
     }
 }
