@@ -13,7 +13,7 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class QuartoMovel {
+public class MovelQuarto {
 
     private Long idQuarto;
     private Long idMovel;

@@ -16,5 +16,8 @@ import lombok.*;
 public class TipoQuarto {
 
     private Long id;
-    private String nome;
+    private String tipo;
+    private Integer totalPessoas;
+    private Integer totalCamas;
+    
 }

@@ -1,6 +1,10 @@
-package com.grupo16.hackathon.domain;
+package com.grupo16.hackathon.gateway.controller.json;
 
 import java.util.List;
+
+import com.grupo16.hackathon.domain.MovelQuarto;
+import com.grupo16.hackathon.domain.Quarto;
+import com.grupo16.hackathon.domain.TipoQuarto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,18 +12,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/**
- * @author Bruno Gomes Damascena dos santos (bruno-gds) < brunog.damascena@gmail.com >
- * Date: 12/03/2024
- * Project Name: hackathon
- */
-
 @Builder
 @Getter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Quarto {
+public class QuartoJson {
 
 	private Long id;
 	private String banheiro;
@@ -28,4 +26,16 @@ public class Quarto {
 	private Long idHotel;
 	private TipoQuarto tipoQuarto;
 	private Integer quantidadeQuartos;
+	
+	
+	public Quarto mapperToDomain() {
+		return Quarto.builder()
+				.id(id)
+				.banheiro(banheiro)
+				.valorDiaria(valorDiaria)
+				.idHotel(idHotel)
+				.quantidadeQuartos(quantidadeQuartos)
+				.build();
+	}
+
 }
