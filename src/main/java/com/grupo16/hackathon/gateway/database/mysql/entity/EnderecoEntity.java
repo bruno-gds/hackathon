@@ -34,10 +34,12 @@ public class EnderecoEntity {
     private String cep;
     private String pais;
 
-    @OneToOne(mappedBy = "hotel")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "hotel_id", referencedColumnName = "id")
     private HotelEntity hotelId;
 
-    @OneToOne(mappedBy = "cliente")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id")
     private ClienteEntity clienteId;
 
 
