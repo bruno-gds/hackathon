@@ -1,7 +1,6 @@
 package com.grupo16.hackathon.usecase;
 
 import com.grupo16.hackathon.domain.Endereco;
-import com.grupo16.hackathon.exception.ErroAoAcessarDatabaseException;
 import com.grupo16.hackathon.gateway.database.EnderecoRepositoryGateway;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +39,9 @@ public class CriarAlterarEnderecoUseCase {
 					.cidade(endereco.getCidade())
 					.estado(endereco.getEstado())
 					.cep(endereco.getCep())
-					.idHotel(enderecoOp.get().getIdHotel())
+					.pais(endereco.getPais())
+					.hotelId(enderecoOp.get().getHotelId())
+					.clienteId(enderecoOp.get().getClienteId())
 					.build();
 
 			enderecoRepositoryGateway.salvar(novoEndereco);

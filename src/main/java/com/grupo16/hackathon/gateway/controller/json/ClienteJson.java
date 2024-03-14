@@ -1,5 +1,7 @@
-package com.grupo16.hackathon.domain;
+package com.grupo16.hackathon.gateway.controller.json;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 /**
@@ -8,20 +10,36 @@ import lombok.*;
  * Project Name: hackathon
  */
 
-@Builder
 @Getter
+@Builder
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cliente {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ClienteJson {
 
     private Long id;
+
+    @NotBlank
     private String paisOrigem;
+
+    @NotBlank
     private String cpf;
+
+    @NotBlank
     private String passaporte;
+
+    @NotBlank
     private String nome;
+
+    @NotBlank
     private String dataNascimento;
+
+    @NotBlank
     private String telefone;
+
+    @NotBlank
     private String email;
-    private Endereco enderecoId;
+
+    private EnderecoJson enderecoId;
 }
