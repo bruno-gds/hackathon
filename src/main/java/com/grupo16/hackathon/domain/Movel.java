@@ -16,4 +16,5 @@ import lombok.*;
 public class Movel {
 
     private Long id;
+    private String descricao;
 }
