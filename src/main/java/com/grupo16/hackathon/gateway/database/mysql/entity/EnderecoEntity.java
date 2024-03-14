@@ -34,11 +34,11 @@ public class EnderecoEntity {
     private String cep;
     private String pais;
 
-    @OneToOne
-    private HotelEntity hotelId;
+    @OneToOne(mappedBy = "endereco")
+    private HotelEntity hotel;
 
-    @OneToOne(mappedBy = "enderecoId", cascade = CascadeType.ALL)
-    private ClienteEntity clienteId;
+    @OneToOne(mappedBy = "endereco")
+    private ClienteEntity cliente;
 
 
     public EnderecoEntity(Endereco endereco) {
@@ -49,10 +49,10 @@ public class EnderecoEntity {
         this.estado = endereco.getEstado().ordinal();
         this.cep = endereco.getCep();
         this.pais = endereco.getPais();
-        this.hotelId = HotelEntity.builder()
+        this.hotel = HotelEntity.builder()
                 .id(endereco.getHotelId().getId())
                 .build();
-        this.clienteId = ClienteEntity.builder()
+        this.cliente = ClienteEntity.builder()
                 .id(endereco.getClienteId().getId())
                 .build();
     }
@@ -67,10 +67,10 @@ public class EnderecoEntity {
                 .cep(cep)
                 .pais(pais)
                 .hotelId(Hotel.builder()
-                        .id(hotelId.getId())
+                        .id(hotel.getId())
                         .build())
                 .clienteId(Cliente.builder()
-                        .id(clienteId.getId())
+                        .id(cliente.getId())
                         .build())
                 .build();
     }

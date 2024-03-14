@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -24,6 +25,18 @@ public class ClienteRepositoryGatewayImpl implements ClienteRepositoryGateway {
 
     private ClienteRepository clienteRepository;
 
+
+    @Override
+    public List<Cliente> obterTodos() {
+        try {
+            List<ClienteEntity> clientes = this.clienteRepository.findAll();
+
+            return clientes.stream().map(ClienteEntity::mapearParaDomain).toList();
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new ErroAoAcessarDatabaseException();
+        }
+    }
 
     @Override
     public Optional<Cliente> obterPorId(Long id) {

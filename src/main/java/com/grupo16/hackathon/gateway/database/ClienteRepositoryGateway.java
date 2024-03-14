@@ -2,6 +2,7 @@ package com.grupo16.hackathon.gateway.database;
 
 import com.grupo16.hackathon.domain.Cliente;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -11,6 +12,8 @@ import java.util.Optional;
  */
 
 public interface ClienteRepositoryGateway {
+
+    List<Cliente> obterTodos();
 
     Optional<Cliente> obterPorId(Long id);
 

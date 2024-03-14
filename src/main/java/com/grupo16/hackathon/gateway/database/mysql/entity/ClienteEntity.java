@@ -34,7 +34,7 @@ public class ClienteEntity {
     private String email;
 
     @OneToOne
-    private EnderecoEntity enderecoId;
+    private EnderecoEntity endereco;
 
 
     public ClienteEntity(Cliente cliente) {
@@ -46,7 +46,7 @@ public class ClienteEntity {
         this.dataNascimento = cliente.getDataNascimento();
         this.telefone = cliente.getTelefone();
         this.email = cliente.getEmail();
-        this.enderecoId = EnderecoEntity.builder()
+        this.endereco = EnderecoEntity.builder()
                 .id(cliente.getEnderecoId().getId())
                 .build();
     }
@@ -62,7 +62,7 @@ public class ClienteEntity {
                 .telefone(telefone)
                 .email(email)
                 .enderecoId(Endereco.builder()
-                        .id(enderecoId.getId())
+                        .id(endereco.getId())
                         .build())
                 .build();
     }

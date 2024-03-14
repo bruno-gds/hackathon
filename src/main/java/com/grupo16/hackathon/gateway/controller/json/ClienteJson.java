@@ -46,6 +46,20 @@ public class ClienteJson {
     private EnderecoJson enderecoId;
 
 
+    public ClienteJson(Cliente cliente) {
+        this.id = cliente.getId();
+        this.paisOrigem = cliente.getPaisOrigem();
+        this.cpf = cliente.getCpf();
+        this.passaporte = cliente.getPassaporte();
+        this.nome = cliente.getNome();
+        this.dataNascimento = cliente.getDataNascimento();
+        this.telefone = cliente.getTelefone();
+        this.email = cliente.getEmail();
+        this.enderecoId = EnderecoJson.builder()
+                .id(cliente.getEnderecoId().getId())
+                .build();
+    }
+
     public Cliente mapearParaDomain() {
         return Cliente.builder()
                 .id(id)

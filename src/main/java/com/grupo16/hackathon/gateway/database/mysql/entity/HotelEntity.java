@@ -24,4 +24,7 @@ public class HotelEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+
+    @OneToOne
+    private EnderecoEntity endereco;
 }
