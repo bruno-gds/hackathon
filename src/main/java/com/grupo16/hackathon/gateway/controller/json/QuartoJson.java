@@ -1,5 +1,6 @@
 package com.grupo16.hackathon.gateway.controller.json;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.grupo16.hackathon.domain.MovelQuarto;
@@ -26,12 +27,14 @@ public class QuartoJson {
 	private Long idHotel;
 	private TipoQuarto tipoQuarto;
 	private Integer quantidadeQuartos;
-	
-	
-	public Quarto mapperToDomain() {
-		List<MovelQuarto> moveisQuarto = outrosMoveis.stream()
-				.map(MovelQuartoJson::mapperToDomain).toList();
-		
+
+
+	public Quarto mapperToDomain(Long id, Long idHotel) {
+		List<MovelQuarto> moveisQuarto = new ArrayList<>();
+		if(outrosMoveis != null) {
+			moveisQuarto = outrosMoveis.stream()
+					.map(MovelQuartoJson::mapperToDomain).toList();
+		}
 		return Quarto.builder()
 				.id(id)
 				.banheiro(banheiro)

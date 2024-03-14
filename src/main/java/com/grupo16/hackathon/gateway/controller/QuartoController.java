@@ -22,11 +22,13 @@ public class QuartoController {
 	
 	private CriarAlterarQuartoUseCase criarAlterarQuartoUseCase;
 	
-	@PostMapping
-	public Long criar(@RequestBody QuartoJson quartoJson) {
+	@PostMapping("{idHotel}")
+	public Long criar(
+			@PathVariable(name = "idHotel") Long idHotel,
+			@RequestBody QuartoJson quartoJson) {
 		log.trace("Start quartoJson={}", quartoJson);
 		
-		Quarto quarto = quartoJson.mapperToDomain();
+		Quarto quarto = quartoJson.mapperToDomain(null, idHotel);
 		
 		Long id = criarAlterarQuartoUseCase.criar(quarto);
 		
@@ -34,13 +36,14 @@ public class QuartoController {
 		return id;
 	}
 	
-	@PutMapping("{id}")
+	@PutMapping("{id}/{idHotel}")
 	public void alterar(
 			@PathVariable(name = "id") Long id,
+			@PathVariable(name = "idHotel") Long idHotel,
 			@RequestBody QuartoJson quartoJson) {
-		log.trace("Start id={}, quartoJson={}", id, quartoJson);
+		log.trace("Start id={}, idHotel={}, quartoJson={}", id, idHotel, quartoJson);
 		
-		Quarto quarto = quartoJson.mapperToDomain();
+		Quarto quarto = quartoJson.mapperToDomain(id, idHotel);
 		
 		criarAlterarQuartoUseCase.alterar(quarto);
 		log.trace("End");
