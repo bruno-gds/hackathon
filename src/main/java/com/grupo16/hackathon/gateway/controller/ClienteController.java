@@ -4,6 +4,7 @@ import com.grupo16.hackathon.domain.Cliente;
 import com.grupo16.hackathon.gateway.controller.json.ClienteJson;
 import com.grupo16.hackathon.usecase.CriarAlterarClienteUseCase;
 import com.grupo16.hackathon.usecase.ObterClienteUseCase;
+import com.grupo16.hackathon.usecase.RemoverClienteUseCase;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,8 @@ public class ClienteController {
     private CriarAlterarClienteUseCase criarAlterarClienteUseCase;
 
     private ObterClienteUseCase obterClienteUseCase;
+
+    private RemoverClienteUseCase removerClienteUseCase;
 
 
     @GetMapping
@@ -55,6 +58,16 @@ public class ClienteController {
 
         Cliente cliente = clienteJson.mapearParaDomain();
         criarAlterarClienteUseCase.alterar(id, cliente);
+
+        log.trace("End");
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("{id}")
+    public void remover(@PathVariable Long id) {
+        log.trace("Start id={}", id);
+
+        removerClienteUseCase.remover(id);
 
         log.trace("End");
     }

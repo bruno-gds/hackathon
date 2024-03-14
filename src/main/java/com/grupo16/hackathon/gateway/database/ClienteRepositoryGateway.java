@@ -18,4 +18,6 @@ public interface ClienteRepositoryGateway {
     Optional<Cliente> obterPorId(Long id);
 
     Long salvar(Cliente cliente);
+
+    void remover(Long id);
 }

@@ -72,4 +72,14 @@ public class ClienteRepositoryGatewayImpl implements ClienteRepositoryGateway {
             throw new ErroAoAcessarDatabaseException();
         }
     }
+
+    @Override
+    public void remover(Long id) {
+        try {
+            this.clienteRepository.deleteById(id);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new ErroAoAcessarDatabaseException();
+        }
+    }
 }
