@@ -2,7 +2,6 @@ package com.grupo16.hackathon.gateway.controller;
 
 import com.grupo16.hackathon.domain.Cliente;
 import com.grupo16.hackathon.gateway.controller.json.ClienteJson;
-import com.grupo16.hackathon.gateway.controller.json.EnderecoJson;
 import com.grupo16.hackathon.usecase.CriarAlterarClienteUseCase;
 import com.grupo16.hackathon.usecase.ObterClienteUseCase;
 import jakarta.validation.Valid;
