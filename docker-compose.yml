@@ -11,8 +11,8 @@ services:
       MYSQL_PASSWORD: bruno123
     ports:
       - 3306:3306
-    volumes:
-      - ./docker/db-data:/var/lib/mysql
+#    volumes:
+#      - ./docker/db-data:/var/lib/mysql
 
   app:
     build: .
