@@ -22,11 +22,23 @@ public class QuartoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-//    private List<MovelQuarto> outrosMoveis;
-	private String banheiro;
-	private Double valorDiaria;
-	private Long idHotel;
-//	private TipoQuarto tipoQuarto;
-	private Integer quantidadeQuartos;
+
+    private String descricao;
+	
+	@ManyToOne
+	@JoinColumn(name = "Hotel_id")
+	private HotelEntity hotel;
+	
+	@ManyToOne
+	@JoinColumn(name = "TipoQuarto_id")
+	private TipoQuartoEntity tipoQuarto;
+	
+    @ManyToMany
+    @JoinTable(name = "MovelQuarto", 
+    joinColumns = { @JoinColumn(name = "Quarto_id") }, 
+    inverseJoinColumns = { @JoinColumn(name = "Movel_id") })
+    private List<MovelEntity> moveis;
+	
+	@OneToMany(mappedBy = "quarto")
+	private List<ReservaEntity> reservas;
 }

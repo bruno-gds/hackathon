@@ -1,5 +1,7 @@
 package com.grupo16.hackathon.gateway.database.mysql.entity;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,4 +29,19 @@ public class HotelEntity {
 
     @OneToOne(mappedBy = "hotel")
     private EnderecoEntity endereco;
+    
+    @OneToMany(mappedBy = "hotel")
+    private List<QuartoEntity> quartos;
+    
+    @ManyToMany
+    @JoinTable(name = "HotelComodidade", 
+    joinColumns = { @JoinColumn(name = "Hotel_id") }, 
+    inverseJoinColumns = { @JoinColumn(name = "Comodidade_id") })
+    private List<ComodidadeEntity> comodidades;
+    
+    @ManyToMany
+	@JoinTable(name = "ServicoHotel", 
+	joinColumns = { @JoinColumn(name = "Hotel_id") }, 
+	inverseJoinColumns = { @JoinColumn(name = "Servico_id") })
+    private List<ServicoEntity> servicos;
 }

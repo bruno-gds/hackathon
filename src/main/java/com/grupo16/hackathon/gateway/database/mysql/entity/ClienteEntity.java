@@ -1,5 +1,7 @@
 package com.grupo16.hackathon.gateway.database.mysql.entity;
 
+import java.util.List;
+
 import com.grupo16.hackathon.domain.Cliente;
 import com.grupo16.hackathon.domain.Endereco;
 import jakarta.persistence.*;
@@ -36,6 +38,8 @@ public class ClienteEntity {
     @OneToOne(mappedBy = "cliente")
     private EnderecoEntity endereco;
 
+    @OneToMany(mappedBy = "cliente")
+    private List<ReservaEntity> reservas;
 
     public ClienteEntity(Cliente cliente) {
         this.id = cliente.getId();
