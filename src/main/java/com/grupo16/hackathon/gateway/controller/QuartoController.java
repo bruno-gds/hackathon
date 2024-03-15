@@ -1,5 +1,8 @@
 package com.grupo16.hackathon.gateway.controller;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -7,9 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.grupo16.hackathon.domain.Movel;
+import com.grupo16.hackathon.domain.MovelQuarto;
 import com.grupo16.hackathon.domain.Quarto;
 import com.grupo16.hackathon.gateway.controller.json.QuartoJson;
 import com.grupo16.hackathon.usecase.CriarAlterarQuartoUseCase;
+import com.grupo16.hackathon.usecase.ObterMovelUseCase;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +27,8 @@ import lombok.extern.slf4j.Slf4j;
 public class QuartoController {
 	
 	private CriarAlterarQuartoUseCase criarAlterarQuartoUseCase;
+	
+	private ObterMovelUseCase obterMovelUseCase;
 	
 	@PostMapping("{idHotel}")
 	public Long criar(
@@ -49,5 +57,14 @@ public class QuartoController {
 		log.trace("End");
 	}
 	
+	@GetMapping("movel")
+	public List<Movel> getMovel(){
+		log.trace("Start");
+		
+		List<Movel> moveis = obterMovelUseCase.obter();
+		
+		log.trace("End moveis={}",moveis);
+		return moveis;
+	}
 
 }

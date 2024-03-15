@@ -16,9 +16,6 @@ public class QuartoRepositoryGatewayImpl implements QuartoRepositoryGateway {
 	@Override
 	public Long salvar(Quarto quarto) {
 		// TODO Auto-generated method stub
-		
-		
-		
 		return null;
 	}
 

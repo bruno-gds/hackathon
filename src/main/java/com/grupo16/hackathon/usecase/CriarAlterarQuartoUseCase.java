@@ -14,7 +14,6 @@ public class CriarAlterarQuartoUseCase {
 	private QuartoRepositoryGateway quartoRepositoryGateway;
 	
 	public Long criar(Quarto quarto) {
-
 		return quartoRepositoryGateway.salvar(quarto);
 	}
 
