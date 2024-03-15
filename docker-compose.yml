@@ -12,4 +12,12 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - ./db-data:/var/lib/mysql
+      - ./docker/db-data:/var/lib/mysql
+
+  app:
+    build: .
+    container_name: hackathon_app
+    depends_on:
+      - hackathon_db
+    ports:
+      - 8080:8080
