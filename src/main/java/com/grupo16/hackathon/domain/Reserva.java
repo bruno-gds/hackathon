@@ -1,6 +1,12 @@
 package com.grupo16.hackathon.domain;
 
-import lombok.*;
+import java.time.LocalDateTime;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * @author Bruno Gomes Damascena dos santos (bruno-gds) < brunog.damascena@gmail.com >
@@ -14,7 +20,12 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Reserva {
-
-    private Long id;
-    private Long idQuarto;
+	private Long id;
+    private Quarto quarto;
+    private LocalDateTime inicio;
+    private LocalDateTime fim;
+    
+    public boolean isAtiva() {
+    	return fim != null;
+    }
 }
