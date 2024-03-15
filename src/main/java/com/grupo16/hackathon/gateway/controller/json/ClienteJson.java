@@ -1,6 +1,8 @@
 package com.grupo16.hackathon.gateway.controller.json;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.grupo16.hackathon.domain.Cliente;
+import com.grupo16.hackathon.domain.Endereco;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
@@ -42,4 +44,35 @@ public class ClienteJson {
     private String email;
 
     private EnderecoJson enderecoId;
+
+
+    public ClienteJson(Cliente cliente) {
+        this.id = cliente.getId();
+        this.paisOrigem = cliente.getPaisOrigem();
+        this.cpf = cliente.getCpf();
+        this.passaporte = cliente.getPassaporte();
+        this.nome = cliente.getNome();
+        this.dataNascimento = cliente.getDataNascimento();
+        this.telefone = cliente.getTelefone();
+        this.email = cliente.getEmail();
+        this.enderecoId = EnderecoJson.builder()
+                .id(cliente.getEnderecoId().getId())
+                .build();
+    }
+
+    public Cliente mapearParaDomain() {
+        return Cliente.builder()
+                .id(id)
+                .paisOrigem(paisOrigem)
+                .cpf(cpf)
+                .passaporte(passaporte)
+                .nome(nome)
+                .dataNascimento(dataNascimento)
+                .telefone(telefone)
+                .email(email)
+                .enderecoId(Endereco.builder()
+                        .id(enderecoId.getId())
+                        .build())
+                .build();
+    }
 }

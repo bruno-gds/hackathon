@@ -17,11 +17,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "hotel")
+@Table(name = "Hotel")
 public class HotelEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+
+    @OneToOne(mappedBy = "hotel")
+    private EnderecoEntity endereco;
 }

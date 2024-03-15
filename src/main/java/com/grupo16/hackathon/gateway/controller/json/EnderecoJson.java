@@ -7,9 +7,7 @@ import com.grupo16.hackathon.domain.Estado;
 import com.grupo16.hackathon.domain.Hotel;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 /**
  * @author Bruno Gomes Damascena dos santos (bruno-gds) < brunog.damascena@gmail.com >
@@ -20,6 +18,8 @@ import lombok.ToString;
 
 @Getter
 @ToString
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class EnderecoJson {
