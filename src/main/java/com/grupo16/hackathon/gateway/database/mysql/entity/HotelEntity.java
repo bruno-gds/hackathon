@@ -25,6 +25,6 @@ public class HotelEntity {
     private Long id;
     private String nome;
 
-    @OneToOne
+    @OneToOne(mappedBy = "hotel")
     private EnderecoEntity endereco;
 }

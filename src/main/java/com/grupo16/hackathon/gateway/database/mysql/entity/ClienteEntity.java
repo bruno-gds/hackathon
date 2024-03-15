@@ -33,7 +33,7 @@ public class ClienteEntity {
     private String telefone;
     private String email;
 
-    @OneToOne
+    @OneToOne(mappedBy = "cliente")
     private EnderecoEntity endereco;
 
 

@@ -34,11 +34,14 @@ public class EnderecoEntity {
     private String cep;
     private String pais;
 
-    @OneToOne(mappedBy = "endereco")
+    @OneToOne
+    @JoinColumn(name = "Hotel_id", referencedColumnName = "id")
     private HotelEntity hotel;
 
-    @OneToOne(mappedBy = "endereco")
+    @OneToOne
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id")
     private ClienteEntity cliente;
+
 
 
     public EnderecoEntity(Endereco endereco) {
@@ -70,7 +73,7 @@ public class EnderecoEntity {
                         .id(hotel.getId())
                         .build())
                 .clienteId(Cliente.builder()
-                        .id(cliente.getId())
+                        .id(this.cliente.getId())
                         .build())
                 .build();
     }
