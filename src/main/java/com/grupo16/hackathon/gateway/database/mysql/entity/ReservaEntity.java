@@ -37,6 +37,7 @@ public class ReservaEntity {
 	private int quantidadePessoa;
 	private LocalDateTime inicio;
 	private LocalDateTime fim;
+	private Long status;
 	
 	@ManyToOne
 	@JoinColumn(name = "Cliente_id")
