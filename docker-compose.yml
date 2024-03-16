@@ -11,13 +11,20 @@ services:
       MYSQL_PASSWORD: bruno123
     ports:
       - 3306:3306
+    healthcheck:
+        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+        timeout: 5s
+        retries: 10
 #    volumes:
 #      - ./docker/db-data:/var/lib/mysql
 
   app:
     build: .
     container_name: hackathon_app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://hackathon_db:3306/hackathon
     depends_on:
-      - hackathon_db
+      hackathon_db:
+        condition: service_healthy
     ports:
       - 8080:8080
