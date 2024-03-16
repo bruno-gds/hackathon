@@ -76,10 +76,10 @@ public class EnderecoJson {
                 .cep(cep)
                 .pais(pais)
                 .hotelId(Hotel.builder()
-                        .id(hotelId.getId())
+                        .id(hotelId == null ? null : hotelId.getId())
                         .build())
                 .clienteId(Cliente.builder()
-                        .id(clienteId.getId())
+                        .id(clienteId == null ? null : clienteId.getId())
                         .build())
                 .build();
     }

@@ -27,7 +27,6 @@ public class ClienteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String paisOrigem;
     private String cpf;
     private String passaporte;
     private String nome;
@@ -43,31 +42,29 @@ public class ClienteEntity {
 
     public ClienteEntity(Cliente cliente) {
         this.id = cliente.getId();
-        this.paisOrigem = cliente.getPaisOrigem();
         this.cpf = cliente.getCpf();
         this.passaporte = cliente.getPassaporte();
         this.nome = cliente.getNome();
         this.dataNascimento = cliente.getDataNascimento();
         this.telefone = cliente.getTelefone();
         this.email = cliente.getEmail();
-        this.endereco = EnderecoEntity.builder()
-                .id(cliente.getEnderecoId().getId())
-                .build();
+//        this.endereco = EnderecoEntity.builder()
+//                .id(cliente.getEnderecoId().getId())
+//                .build();
     }
 
     public Cliente mapearParaDomain() {
         return Cliente.builder()
                 .id(id)
-                .paisOrigem(paisOrigem)
                 .cpf(cpf)
                 .passaporte(passaporte)
                 .nome(nome)
                 .dataNascimento(dataNascimento)
                 .telefone(telefone)
                 .email(email)
-                .enderecoId(Endereco.builder()
-                        .id(endereco.getId())
-                        .build())
+//                .enderecoId(Endereco.builder()
+//                        .id(endereco.getId())
+//                        .build())
                 .build();
     }
 }

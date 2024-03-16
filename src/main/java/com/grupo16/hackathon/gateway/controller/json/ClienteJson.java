@@ -23,12 +23,8 @@ public class ClienteJson {
     private Long id;
 
     @NotBlank
-    private String paisOrigem;
-
-    @NotBlank
     private String cpf;
 
-    @NotBlank
     private String passaporte;
 
     @NotBlank
@@ -48,7 +44,6 @@ public class ClienteJson {
 
     public ClienteJson(Cliente cliente) {
         this.id = cliente.getId();
-        this.paisOrigem = cliente.getPaisOrigem();
         this.cpf = cliente.getCpf();
         this.passaporte = cliente.getPassaporte();
         this.nome = cliente.getNome();
@@ -63,7 +58,6 @@ public class ClienteJson {
     public Cliente mapearParaDomain() {
         return Cliente.builder()
                 .id(id)
-                .paisOrigem(paisOrigem)
                 .cpf(cpf)
                 .passaporte(passaporte)
                 .nome(nome)
@@ -71,7 +65,7 @@ public class ClienteJson {
                 .telefone(telefone)
                 .email(email)
                 .enderecoId(Endereco.builder()
-                        .id(enderecoId.getId())
+                        .id(enderecoId == null ? null : enderecoId.getId())
                         .build())
                 .build();
     }
