@@ -66,5 +66,15 @@ public class ReservaEntity {
 				.quarto(Quarto.builder().id(quarto.getId()).build())
 				.build();
 	}
+
+	public ReservaEntity(Reserva reserva) {
+		id = reserva.getId();
+		inicio = reserva.getInicio();
+		fim = reserva.getFim();
+		status = (long) reserva.getStatus().ordinal();
+		quarto = new QuartoEntity(reserva.getQuarto());
+		cliente = new ClienteEntity(reserva.getCliente());
+		servicos = reserva.getServicos().stream().map(ServicoEntity::new).toList();
+	}
 	
 }

@@ -1,6 +1,7 @@
 package com.grupo16.hackathon.domain;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,10 +22,12 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Reserva {
 	private Long id;
-    private Quarto quarto;
     private LocalDateTime inicio;
     private LocalDateTime fim;
     private StatusReserva status;
+    private Quarto quarto;
+    private Cliente cliente;
+    private List<Servico> servicos;
     
     public boolean isDataEmUso(LocalDateTime inicio, LocalDateTime fim) {
     	boolean caso1 = this.fim.compareTo(inicio) > 0;//Data Fim interfere na data inicio 

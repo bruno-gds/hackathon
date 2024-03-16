@@ -2,6 +2,8 @@ package com.grupo16.hackathon.gateway.database.mysql.entity;
 
 import java.util.List;
 
+import com.grupo16.hackathon.domain.Quarto;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "quarto")
 public class QuartoEntity {
 
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -47,4 +49,10 @@ public class QuartoEntity {
 	
 	@OneToMany(mappedBy = "quarto")
 	private List<ReservaEntity> reservas;
+	
+    public QuartoEntity(Quarto quarto) {
+    	id = quarto.getId();
+	}
+
+	
 }

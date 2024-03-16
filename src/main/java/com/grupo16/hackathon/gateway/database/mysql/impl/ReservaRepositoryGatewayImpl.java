@@ -34,13 +34,13 @@ public class ReservaRepositoryGatewayImpl implements ReservaRepositoryGateway {
 	@Override
 	public Long criar(Reserva reserva) {
 		try {
-			// TODO Auto-generated method stub
+			ReservaEntity reservaEntity = new ReservaEntity(reserva);
+			return reservaRepository.save(reservaEntity).getId();
 			
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			throw new ErroAoAcessarDatabaseException();
 		}
-		return null;
 	}
 
 }

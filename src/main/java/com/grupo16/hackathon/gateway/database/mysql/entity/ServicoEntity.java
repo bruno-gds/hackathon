@@ -2,6 +2,8 @@ package com.grupo16.hackathon.gateway.database.mysql.entity;
 
 import java.util.List;
 
+import com.grupo16.hackathon.domain.Servico;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -38,4 +40,8 @@ public class ServicoEntity {
 	@ManyToMany(mappedBy = "servicos")
 	private List<HotelEntity> hoteis;
     
+	public ServicoEntity(Servico servico) {
+		id = servico.getId();
+		tipo = (long) servico.getTipo();
+	}
 }
