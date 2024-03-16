@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.grupo16.hackathon.domain.Reserva;
 import com.grupo16.hackathon.exception.QuartoComReservaNaMesmaDataException;
-import com.grupo16.hackathon.gateway.ReservaRepositoryGateway;
+import com.grupo16.hackathon.gateway.database.ReservaRepositoryGateway;
 
 import lombok.extern.slf4j.Slf4j;
 

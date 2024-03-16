@@ -1,4 +1,4 @@
-package com.grupo16.hackathon.gateway;
+package com.grupo16.hackathon.gateway.database;
 
 import java.util.List;
 

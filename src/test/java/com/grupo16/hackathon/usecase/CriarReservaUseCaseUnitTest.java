@@ -19,7 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.grupo16.hackathon.domain.Quarto;
 import com.grupo16.hackathon.domain.Reserva;
 import com.grupo16.hackathon.exception.QuartoComReservaNaMesmaDataException;
-import com.grupo16.hackathon.gateway.ReservaRepositoryGateway;
+import com.grupo16.hackathon.gateway.database.ReservaRepositoryGateway;
 
 @ExtendWith(MockitoExtension.class)
 class CriarReservaUseCaseUnitTest {
