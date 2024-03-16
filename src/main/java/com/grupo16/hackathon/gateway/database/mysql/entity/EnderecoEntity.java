@@ -35,11 +35,11 @@ public class EnderecoEntity {
     private String pais;
 
     @OneToOne
-    @JoinColumn(name = "Hotel_id", referencedColumnName = "id")
+    @JoinColumn(name = "Hotel_id")
     private HotelEntity hotel;
 
     @OneToOne
-    @JoinColumn(name = "cliente_id", referencedColumnName = "id")
+    @JoinColumn(name = "cliente_id")
     private ClienteEntity cliente;
 
 
@@ -52,10 +52,10 @@ public class EnderecoEntity {
         this.estado = endereco.getEstado().ordinal();
         this.cep = endereco.getCep();
         this.pais = endereco.getPais();
-        this.hotel = HotelEntity.builder()
+        this.hotel = endereco.getHotelId() == null ? null : HotelEntity.builder()
                 .id(endereco.getHotelId().getId())
                 .build();
-        this.cliente = ClienteEntity.builder()
+        this.cliente = endereco.getClienteId() == null ? null : ClienteEntity.builder()
                 .id(endereco.getClienteId().getId())
                 .build();
     }

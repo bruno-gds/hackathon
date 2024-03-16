@@ -65,7 +65,7 @@ public class EnderecoJson {
                 .build();
     }
 
-    public Endereco mapearParaEnderecoDomain() {
+    public Endereco mapearParaEnderecoDomain(Long idHotel, Long idCliente) {
 
         return Endereco.builder()
                 .id(id)
@@ -75,12 +75,8 @@ public class EnderecoJson {
                 .estado(Estado.valueOf(estado))
                 .cep(cep)
                 .pais(pais)
-                .hotelId(Hotel.builder()
-                        .id(hotelId == null ? null : hotelId.getId())
-                        .build())
-                .clienteId(Cliente.builder()
-                        .id(clienteId == null ? null : clienteId.getId())
-                        .build())
+                .hotelId(idHotel == null ? null : Hotel.builder().id(idHotel).build())
+                .clienteId(idCliente == null ? null : Cliente.builder().id(idCliente).build())
                 .build();
     }
 }

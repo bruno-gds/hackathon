@@ -47,10 +47,12 @@ public class EnderecoController {
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
-	public Long criar(@Valid @RequestBody EnderecoJson enderecoJson) {
+	public Long criar(@Valid @RequestBody EnderecoJson enderecoJson,
+			@RequestParam(required = false) Long idHotel,
+			@RequestParam(required = false) Long idCliente) {
 		log.trace("Start enderecoJson={}", enderecoJson);
 
-		Endereco endereco = enderecoJson.mapearParaEnderecoDomain();
+		Endereco endereco = enderecoJson.mapearParaEnderecoDomain(idHotel, idCliente);
 		Long id = criarAlterarEnderecoUseCase.criar(endereco);
 
 		log.trace("End id={}", id);
@@ -62,7 +64,7 @@ public class EnderecoController {
 	public void alterar(@PathVariable Long id, @Valid @RequestBody EnderecoJson enderecoJson) {
 		log.trace("Start id={} enderecoJson={}", id, enderecoJson);
 
-		Endereco endereco = enderecoJson.mapearParaEnderecoDomain();
+		Endereco endereco = enderecoJson.mapearParaEnderecoDomain(null, null);
 
 		criarAlterarEnderecoUseCase.alterar(id, endereco);
 
