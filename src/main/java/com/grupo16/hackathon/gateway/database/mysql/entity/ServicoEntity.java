@@ -32,7 +32,7 @@ public class ServicoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long tipo;
+    private String nome;
     
     @ManyToMany(mappedBy = "servicos")
     private List<ReservaEntity> reservas;
@@ -42,6 +42,6 @@ public class ServicoEntity {
     
 	public ServicoEntity(Servico servico) {
 		id = servico.getId();
-		tipo = (long) servico.getTipo();
+		nome = servico.getNome();
 	}
 }

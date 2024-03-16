@@ -16,5 +16,5 @@ import lombok.*;
 public class Servico {
 
     private Long id;
-    private int tipo;
+    private String nome;
 }

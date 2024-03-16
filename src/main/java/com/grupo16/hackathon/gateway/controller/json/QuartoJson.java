@@ -44,5 +44,9 @@ public class QuartoJson {
 				.outrosMoveis(moveisQuarto)
 				.build();
 	}
+	
+	public Quarto mapperToDomain() {
+		return mapperToDomain(id, idHotel);
+	}
 
 }
