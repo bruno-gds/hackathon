@@ -34,4 +34,13 @@ public class ReservaJson {
 				.build();
 	}
 
+	public ReservaJson(Reserva reserva) {
+		this.id = reserva.getId();
+		this.inicio = reserva.getInicio();
+		this.fim = reserva.getFim();
+		this.status = reserva.getStatus();
+		this.quarto = QuartoJson.builder().build();
+		this.cliente = ClienteJson.builder().build();
+		this.servicos = reserva.getServicos().stream().map(ServicoJson::new).toList();
+	}
 }
