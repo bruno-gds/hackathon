@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ServicoJson {
 	private Long id;
-	private int tipo;
+	private String nome;
 
 	public Servico mapearParaDomain() {
 		return Servico.builder()
@@ -23,6 +23,6 @@ public class ServicoJson {
 
 	public ServicoJson(Servico servico) {
 		this.id = servico.getId();
-		this.tipo = servico.getTipo();
+		this.nome = servico.getNome();
 	}
 }
