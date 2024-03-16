@@ -48,9 +48,6 @@ public class ClienteEntity {
         this.dataNascimento = cliente.getDataNascimento();
         this.telefone = cliente.getTelefone();
         this.email = cliente.getEmail();
-//        this.endereco = EnderecoEntity.builder()
-//                .id(cliente.getEnderecoId().getId())
-//                .build();
     }
 
     public Cliente mapearParaDomain() {
@@ -62,9 +59,6 @@ public class ClienteEntity {
                 .dataNascimento(dataNascimento)
                 .telefone(telefone)
                 .email(email)
-//                .enderecoId(Endereco.builder()
-//                        .id(endereco.getId())
-//                        .build())
                 .build();
     }
 }

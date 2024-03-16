@@ -55,12 +55,6 @@ public class ClienteRepositoryGatewayImpl implements ClienteRepositoryGateway {
         try {
             log.trace("Start cliente={}", cliente);
 
-//            ClienteEntity validaCpf = clienteRepository.findByCpf(cliente.getCpf());
-//
-//            if (validaCpf != null) {
-//                throw new IllegalArgumentException("Ja existe um cliente com este cpf");
-//            }
-
             ClienteEntity entity = new ClienteEntity(cliente);
 
             clienteRepository.save(entity);
