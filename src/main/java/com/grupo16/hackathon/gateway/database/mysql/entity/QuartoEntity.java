@@ -2,10 +2,18 @@ package com.grupo16.hackathon.gateway.database.mysql.entity;
 
 import java.util.List;
 
-import com.grupo16.hackathon.domain.MovelQuarto;
-import com.grupo16.hackathon.domain.TipoQuarto;
+import com.grupo16.hackathon.domain.Quarto;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "quarto")
 public class QuartoEntity {
 
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -41,4 +49,10 @@ public class QuartoEntity {
 	
 	@OneToMany(mappedBy = "quarto")
 	private List<ReservaEntity> reservas;
+	
+    public QuartoEntity(Quarto quarto) {
+    	id = quarto.getId();
+	}
+
+	
 }

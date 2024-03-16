@@ -1,6 +1,13 @@
 package com.grupo16.hackathon.domain;
 
-import lombok.*;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * @author Bruno Gomes Damascena dos santos (bruno-gds) < brunog.damascena@gmail.com >
@@ -14,7 +21,21 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Reserva {
-
-    private Long id;
-    private Long idQuarto;
+	private Long id;
+    private LocalDateTime inicio;
+    private LocalDateTime fim;
+    private StatusReserva status;
+    private Quarto quarto;
+    private Cliente cliente;
+    private List<Servico> servicos;
+    
+    public boolean isDataEmUso(LocalDateTime inicio, LocalDateTime fim) {
+    	boolean caso1 = this.fim.compareTo(inicio) > 0;//Data Fim interfere na data inicio 
+    	boolean caso2 = inicio.compareTo(this.fim) < 0;//Data inicio interfere na data fim 
+    	boolean caso3 = inicio.compareTo(this.inicio) >= 0 && fim.compareTo(this.fim) <= 0; //Data inicio e fim dentro da reserva 
+    	boolean caso4 = inicio.compareTo(this.inicio) <= 0 && fim.compareTo(this.fim) >= 0; //Data inicio e fim fora da reserva, mas passando por ela 
+    	
+    	return caso1 || caso2 || caso3 || caso4;
+    }
+    
 }
