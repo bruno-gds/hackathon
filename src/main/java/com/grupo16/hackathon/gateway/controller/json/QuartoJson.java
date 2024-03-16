@@ -46,7 +46,7 @@ public class QuartoJson {
 	}
 	
 	public Quarto mapperToDomain() {
-		return mapperToDomain(null, null);
+		return mapperToDomain(id, idHotel);
 	}
 
 }

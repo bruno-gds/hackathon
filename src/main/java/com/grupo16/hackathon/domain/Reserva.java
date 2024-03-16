@@ -29,6 +29,10 @@ public class Reserva {
     private Cliente cliente;
     private List<Servico> servicos;
     
+    public void nova() {
+    	status = StatusReserva.ABERTA;
+    }
+    
     public boolean isDataEmUso(LocalDateTime inicio, LocalDateTime fim) {
     	boolean caso1 = this.fim.compareTo(inicio) > 0;//Data Fim interfere na data inicio 
     	boolean caso2 = inicio.compareTo(this.fim) < 0;//Data inicio interfere na data fim 

@@ -8,15 +8,18 @@ import com.grupo16.hackathon.domain.Reserva;
 import com.grupo16.hackathon.exception.QuartoComReservaNaMesmaDataException;
 import com.grupo16.hackathon.gateway.database.ReservaRepositoryGateway;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@AllArgsConstructor
 public class CriarReservaUseCase {
 
 	private ReservaRepositoryGateway reservaRepositoryGateway;
 	
 	public Long criar(Reserva novaReserva) {
+		novaReserva.nova();
 		
 		List<Reserva> reservas = reservaRepositoryGateway.obterPorQuartoIdEAtivas(novaReserva.getQuarto().getId());
 		
