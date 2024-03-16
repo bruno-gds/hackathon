@@ -17,6 +17,9 @@ services:
   app:
     build: .
     container_name: hackathon_app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://hackathon_db:3306/hackathon
+
     depends_on:
       - hackathon_db
     ports:
