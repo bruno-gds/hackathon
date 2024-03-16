@@ -3,6 +3,10 @@ package com.grupo16.hackathon.gateway.database.mysql.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.grupo16.hackathon.domain.Quarto;
+import com.grupo16.hackathon.domain.Reserva;
+import com.grupo16.hackathon.domain.StatusReserva;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -53,4 +57,14 @@ public class ReservaEntity {
 	inverseJoinColumns = { @JoinColumn(name = "Servico_id") })
 	private List<ServicoEntity> servicos;
 
+	public Reserva getDomain() {
+		return Reserva.builder()
+				.id(id)
+				.inicio(inicio)
+				.fim(fim)
+				.status(StatusReserva.obterPorId(status.intValue()))
+				.quarto(Quarto.builder().id(quarto.getId()).build())
+				.build();
+	}
+	
 }
